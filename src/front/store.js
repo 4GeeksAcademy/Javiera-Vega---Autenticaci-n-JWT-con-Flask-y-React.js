@@ -12,7 +12,8 @@ export const initialStore=()=>{
         title: "Do my homework",
         background: null,
       }
-    ]
+    ],
+    token: localStorage.getItem("token") || null,
   }
 }
 
@@ -27,6 +28,18 @@ export default function storeReducer(store, action = {}) {
     case 'add_task':
 
       const { id,  color } = action.payload
+
+    case 'LOGIN':
+      return{
+        ...store,
+        token: action.payload
+      };
+    
+      case "LOGOUT":
+        return{
+          ...store,
+          token: localStorage.getItem("token") || null, 
+        }
 
       return {
         ...store,
