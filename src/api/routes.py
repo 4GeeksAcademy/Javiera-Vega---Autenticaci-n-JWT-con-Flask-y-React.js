@@ -141,7 +141,7 @@ def reset_password_user():
 @jwt_required()
 def update_password_user():
     user_id = get_jwt_identity()
-    body = request.json
+    body = request.get_json()
 
     user = User.query.filter_by(id=user_id).first()
 
